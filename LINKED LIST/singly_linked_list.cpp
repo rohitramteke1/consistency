@@ -15,9 +15,11 @@ public:
     }
     Node<T>(T data)
     { // or Node(T data)
-        next = NULL;
         this->data = data;
+        this->next = NULL;
     }
+    // destructor
+    ~Node<T>() { }
 };
 
 template <typename T>
@@ -26,10 +28,7 @@ class SinglyLinkedList
     Node<T> *head = NULL;
 
 public:
-    SinglyLinkedList()
-    { // SinglyLinkedList()
-        head = NULL;
-    }
+    SinglyLinkedList() : head(NULL) {}
     bool isEmpty() {
         if(head == NULL) return true;
         return false;
@@ -45,7 +44,28 @@ public:
     void deleteAtFirst();
     void deleteInBetween(int index);
     void deleteAtLast();
+
+    // display
+    void display();
 };
+
+template <typename T>
+void SinglyLinkedList<T>::display(){
+    cout << endl;
+    if (head == NULL) {
+        cout << "Linked list isEmpty ..." << endl ;
+        return;
+    }
+    Node<T> *temp = NULL;
+    temp = head;
+    cout << "Singly Linked List: ";
+    while (temp != NULL)
+    {
+        cout << temp->data << ' ';
+        temp = temp->next;
+    }
+    cout << endl;
+}
 
 template <typename T>
 void SinglyLinkedList<T>::insertNode(T data)
@@ -53,47 +73,204 @@ void SinglyLinkedList<T>::insertNode(T data)
     // Create Node
     Node<T> *node = new Node(data);
     if(!isEmpty()) {
-
-        return;
+        Node<T> *temp = head;
+        while (temp->next != NULL)
+            temp = temp->next;
+        temp->next = node;
     }
+    else head = node;
+    cout << "  inserted: " << node->data << endl;
 }
 
 template <typename T>
 void SinglyLinkedList<T>::insertAtFirst(T data)
 {
+    if(!isEmpty()) {
+        Node<T> *node = new Node(data);
+        node->next = head;
+        head = node;
+        cout << "  inserted: " << node->data << endl;
+    } else {
+        cout << "List is empty..." << endl;
+    }
 }
 
 template <typename T>
 void SinglyLinkedList<T>::insertAtLast(T data)
 {
+    if (!isEmpty())
+    {
+        Node<T> *node = new Node(data);
+        Node<T> *temp = head;
+        while (temp->next != NULL)
+            temp = temp->next;
+
+        temp->next = node;
+        cout << "  inserted: " << node->data << endl;
+    } else {
+        cout << "List is empty...";
+    }
+    
 }
 
 template <typename T>
 void SinglyLinkedList<T>::insertInBetween(T data, int index)
 {
+    if (!isEmpty())
+    {
+        int listLen = 0;
+        Node<T> *temp = head;
+        while (temp != NULL)
+        {
+            ++listLen;
+            temp = temp->next;
+        }
+        if (index > 0 && index < listLen-1)
+        {
+            Node<T> *prevNode = NULL, *temp = head;
+            Node<T> *node = new Node(data);
+            while (index-- > 0)
+            {
+                prevNode = temp;
+                temp = temp->next;
+            }
+            prevNode->next = node;
+            node->next = temp;
+        }
+        else {
+            cout << "Error: IndexOutOfRangeError\n";
+            cout << "can't insert " << data << " at " << index << endl;
+        }
+    }
+    else cout << "List is empty..." << endl;
 }
 
 template <typename T>
 void SinglyLinkedList<T>::deleteNode()
 {
+    Node<T> *temp = head, *prevNode = head;
+    if (!isEmpty())
+    {
+        while(temp->next != NULL)
+        {
+            prevNode = temp;
+            temp = temp->next;
+        }
+        // if there is only one-node(i.e. head)
+        if (head == temp)
+        {
+            head = NULL;
+            delete temp;
+            return;
+        }
+        // more than one node
+        prevNode->next = NULL;
+        cout << "  deleted: " << temp->data << endl;
+        delete temp;
+    }
+    else cout << "List is empty..." << endl;
 }
 template <typename T>
 void SinglyLinkedList<T>::deleteAtFirst()
 {
+    if(!isEmpty()) {
+        Node<T> *temp = head;
+        head = head->next;
+        cout << "  deleted: " << temp->data << endl; 
+        delete temp;
+    }
+    else cout << "List is empty..." << endl;
 }
 template <typename T>
 void SinglyLinkedList<T>::deleteInBetween(int index)
 {
+    if (!isEmpty())
+    {
+        int listLen = 0;
+        Node<T> *temp = head;
+        while (temp != NULL)
+        {
+            ++listLen;
+            temp = temp->next;
+        }
+        if (index > 0 && index < listLen-1)
+        {
+            Node<T> *prevNode = NULL, *temp = head;
+            while (index-- > 0)
+            {
+                prevNode = temp;
+                temp = temp->next;
+            }
+            prevNode->next = temp->next;
+            cout << "  deleted: " << temp->data << endl;
+            delete temp;
+        }
+        else {
+            cout << "Error: IndexOutOfRangeError\n";
+            cout << "can't delete at index:" << index << endl;
+        }
+    }
+    else cout << "List is empty..." << endl;
 }
 template <typename T>
 void SinglyLinkedList<T>::deleteAtLast()
 {
+    if(!isEmpty()) {
+        Node<T> *temp = head, *prevNode = NULL;
+
+        while (temp->next != NULL)
+        {
+            prevNode = temp;
+            temp = temp->next;
+        }
+        if(head == temp) { // if there is only one node
+            head = NULL;
+            cout << "  deleted: " << temp->data << endl; 
+            delete temp;
+            return;
+        }
+        cout << "  deleted: " << temp->data << endl; 
+        delete temp;
+        prevNode->next = NULL;
+    }
+    else cout << "List is empty..." << endl;
 }
 
 int main()
 {
     SinglyLinkedList<int> sll;
-    sll.insertNode();
 
+    // insertion
+    sll.insertNode(1);
+    sll.insertNode(2);
+    sll.insertNode(3);
+    sll.insertNode(4);
+    sll.insertNode(5);
+    sll.insertAtFirst(0);
+    sll.insertAtLast(6);
+    sll.display();
+
+    sll.insertInBetween(55, 5);
+    sll.display();
+    sll.insertInBetween(66, 6);
+    sll.display();
+    sll.insertInBetween(99, 9); // Error: IndexOutOfRangeError
+    sll.display();
+
+    // deletion
+    sll.deleteNode();
+    sll.display();
+    sll.deleteAtFirst();
+    sll.display();
+    sll.deleteAtLast();
+    sll.deleteAtLast();
+    sll.deleteAtLast();
+    sll.deleteAtLast();
+    sll.display();
+    sll.deleteInBetween(2);
+    sll.display();
+
+
+    
     return 0;
 }
