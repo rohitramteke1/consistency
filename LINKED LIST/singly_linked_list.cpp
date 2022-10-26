@@ -19,7 +19,7 @@ public:
         this->next = NULL;
     }
     // destructor
-    ~Node<T>() { }
+    ~Node<T>() { this->next = NULL;}
 };
 
 template <typename T>
@@ -44,6 +44,7 @@ public:
     void deleteAtFirst();
     void deleteInBetween(int index);
     void deleteAtLast();
+    void deleteKthFromLast(int k);
 
     // display
     void display();
@@ -236,6 +237,41 @@ void SinglyLinkedList<T>::deleteAtLast()
     else cout << "List is empty..." << endl;
 }
 
+template <typename T>
+void SinglyLinkedList<T>::deleteKthFromLast(int k)
+{
+    Node<T> *start = new Node();
+    start->next = head;
+    Node<T> *fast = start;
+    Node<T> *slow = start;
+
+    if(!isEmpty()) {
+        for (int i = 1; i <= k; i++) // now our *fast is kth position ahead of *slow
+            fast = fast->next;
+        // now move the both slow and fast until fast->next != NULL
+        // at this time our *slow is pointing the (k-1)th or (len-K)th element
+
+        while(fast->next != NULL) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        // what if slow points to head => k == 1st node
+        if (slow->next == head)
+        {
+            head = head->next;
+            delete slow;
+            return;
+        }
+        
+        Node<T> *temp = slow->next;
+        slow->next = slow->next->next;
+        temp->next = NULL;
+        delete temp;
+        return;
+    }
+    else cout << "List is empty..." << endl;
+}
+
 int main()
 {
     SinglyLinkedList<int> sll;
@@ -249,26 +285,30 @@ int main()
     sll.insertAtFirst(0);
     sll.insertAtLast(6);
     sll.display();
-
-    sll.insertInBetween(55, 5);
+    sll.deleteKthFromLast(6);
     sll.display();
-    sll.insertInBetween(66, 6);
-    sll.display();
-    sll.insertInBetween(99, 9); // Error: IndexOutOfRangeError
+    sll.deleteKthFromLast(5);
     sll.display();
 
-    // deletion
-    sll.deleteNode();
-    sll.display();
-    sll.deleteAtFirst();
-    sll.display();
-    sll.deleteAtLast();
-    sll.deleteAtLast();
-    sll.deleteAtLast();
-    sll.deleteAtLast();
-    sll.display();
-    sll.deleteInBetween(2);
-    sll.display();
+    // sll.insertInBetween(55, 5);
+    // sll.display();
+    // sll.insertInBetween(66, 6);
+    // sll.display();
+    // sll.insertInBetween(99, 9); // Error: IndexOutOfRangeError
+    // sll.display();
+
+    // // deletion
+    // sll.deleteNode();
+    // sll.display();
+    // sll.deleteAtFirst();
+    // sll.display();
+    // sll.deleteAtLast();
+    // sll.deleteAtLast();
+    // sll.deleteAtLast();
+    // sll.deleteAtLast();
+    // sll.display();
+    // sll.deleteInBetween(2);
+    // sll.display();
 
 
     
