@@ -123,7 +123,7 @@ public:
         
     }
 
-    // non recursive
+    // non recursive // levelOrderTraversal
     void BSFTraversal(Node<T> *root) {
         queue<Node<T> *> q;
         q.push(root);
@@ -167,7 +167,9 @@ int main()
     root->right->right->left = T.insertNode(19);
     root->right->right->right = T.insertNode(25);
 
-    T.BSFTraversal(root);
+    // T.BSFTraversal(root);
+    // cout << endl;
+    T.levelOrderTraversal(root);
 
 
     return 0;
