@@ -98,7 +98,7 @@ public:
 
     bool isBST(Node* root) {
         if(root == NULL) return true;
-
+        
         return false;
     }
 };

@@ -1,9 +1,30 @@
+// Trapping rainwater problem
+// Pre Processing of an array or 
+// pre computation technique
+
 #include <iostream>
 using namespace std;
 
 const int N = 1e5+10;
 int prefixSum[N];
 int suffixSum[N];
+
+// prefixSum
+void prefix(int a[], int n) {
+    for (int i = 1; i <= n; i++)
+    {
+        prefixSum[i] = prefixSum[i-1] + a[i];
+        cout << prefixSum[i] << ' ';
+    }
+}
+// suffixSum
+void suffix(int a[], int n) {
+    for (int i = n; i >= 1; i--)
+    {
+        suffixSum[i] = suffixSum[i+1] + a[i];
+        cout << suffixSum[i] << ' ';
+    }
+}
 
 int trappingRainWater(int a[], int n) {
     int rain = 0;
@@ -25,10 +46,14 @@ int trappingRainWater(int a[], int n) {
     }
 
     for (int i = 0; i <= n; i++)
+    {
         rain = rain + min(prefixSum[i], suffixSum[i]) - a[i];
-
+    }
+    
     return rain;
 }
+
+
 
 int main()
 {
@@ -39,8 +64,9 @@ int main()
     a[0] = 0;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
-    
+
     cout << trappingRainWater(a, n);
+    
     
     return 0;
 }

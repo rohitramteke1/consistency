@@ -2,3 +2,11 @@
 *.exe
 */.cph
 *.gitignore
+*.html
+*.py
+*.js
+*.php
+*.java
+*.exe
+*.out
+/site
