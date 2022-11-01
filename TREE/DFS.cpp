@@ -118,38 +118,6 @@ public:
         return;
     }
 
-    // level order traversal [Recursive]
-    void levelOrderTraversal(Node<T> *node) {
-        
-    }
-
-    // non recursive // levelOrderTraversal
-    void BSFTraversal(Node<T> *root) {
-        queue<Node<T> *> q;
-        q.push(root);
-        q.push(NULL);
-        while (!q.empty())
-        {
-            root = q.front();
-            if (root == NULL) // print the data level-by-level
-            {
-                q.pop(); // removes the null and
-                if (q.empty())
-                    return;
-                cout << endl;
-                q.push(NULL); // at the end of q
-                continue;
-            }
-            cout << root->data << ' ';
-            q.pop();
-            if(root->left != NULL) {
-                q.push(root->left);
-            }
-            if(root->right != NULL) {
-                q.push(root->right);
-            }            
-        }
-    }
 };
 
 int main()
@@ -166,11 +134,6 @@ int main()
     root->right->right = T.insertNode(20);
     root->right->right->left = T.insertNode(19);
     root->right->right->right = T.insertNode(25);
-
-    // T.BSFTraversal(root);
-    // cout << endl;
-    T.levelOrderTraversal(root);
-
 
     return 0;
 }

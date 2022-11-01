@@ -246,11 +246,10 @@ public:
             if(node->right) 
                 s.push(node->right);
         }
-        reverse(v.begin(), v.end());
+        reverse(v.begin(), v.end()); 
         for (auto &&i : v)
             cout << i << ' ';
     }
-
 };
 
 int main()
@@ -270,13 +269,13 @@ int main()
 
     T.BFSTraversal(root);
     cout << endl << "Height: " << T.height(root) << endl;
-    T.iterativePreOrder(root);
-    cout << endl;
-    T.iterativeInOrder(root);
-    cout << endl;
-    T.iterativePostOrder(root);
-    cout << endl;
-    T.iterativePostOrderOneStack(root);
-    cout << endl;
+    // T.iterativePreOrder(root);
+    // cout << endl;
+    // T.iterativeInOrder(root);
+    // cout << endl;
+    // T.iterativePostOrder(root);
+    // cout << endl;
+    // T.iterativePostOrderOneStack(root);
+    // cout << endl;
     return 0;
 }
