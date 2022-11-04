@@ -13,12 +13,14 @@ void print(int arr[], int size) {
          cout << arr[i] << ' ';
 }
 
-int partitionIndex() {
+int partitionIndex(int arr[], int n) {
     
 }
 
-void quickSort() {
-    
+void quickSort(int arr[], int n) {
+    int partition = partitionIndex(arr, n);
+
+
 }
 
 int main()
@@ -27,8 +29,6 @@ int main()
     // int arr[] = {1,2,3,4,5,6,7};
 
     int n = sizeof(arr) / sizeof(arr[0]);
-
-    // print(arr, n);
     
     return 0;
 }
