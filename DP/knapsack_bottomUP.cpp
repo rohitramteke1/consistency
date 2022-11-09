@@ -30,12 +30,6 @@ int knapsack(int wt[], int val[], int n, int w)
 int knapsackBottomUp(int wt[], int val[], int n, int w)
 {
 // base-condt -> initialise
-    // for (int i = 0; i < n + 1; i++)
-    //     for (int j = 0; j < w + 1; j++)
-    //         if (i == 0 || j == 0)
-    //             dp[i][j] = 0;
-
-// base-condt -> initialise
     for (int i = 0; i < n+1; i++)
         dp[i][0] = 0;
     for (int j = 0; j < n+1; j++)
@@ -66,8 +60,6 @@ int main()
     int wt[] = {1, 2, 3, 4, 5, 6};
     int val[] = {6, 5, 4, 3, 2, 1};
     memset(dp, -1, sizeof(dp));
-
-    // cout << knapsack(wt, val, 6, 10) << endl ;
 
     cout << knapsackBottomUp(wt, val, 6, 10) << endl;
 

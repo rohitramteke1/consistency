@@ -35,7 +35,7 @@ int main()
 
     // recursive call -> no dp
     // recursive call + table(matrix -> dp[n][w] )
-    // only table(dp[n][w])
+    // only table(dp[n][w]) bottom up
     cout << knapsack(wt, val, 6, 10) << endl ;
 
     return 0;
