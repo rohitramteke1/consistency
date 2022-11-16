@@ -13,12 +13,12 @@ void print(int arr[], int size) {
          cout << arr[i] << ' ';
 }
 
-int merge() {
+void merge() {
     
 }
 
-void mergeSort() {
-
+void mergeSort(int arr[], int low, int mid, int high) {
+    
 }
 
 int main()
