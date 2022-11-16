@@ -40,7 +40,6 @@ int LCS(string s1, string s2, int m, int n) {
 
 }
 
-
 int SCS(string s1, string s2, int m, int n) {
 
     return m + n - LCS(s1, s2, m, n);
