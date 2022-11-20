@@ -1,10 +1,9 @@
 // Find the longest repeating subsequence in a string
-// 
 
 #include <bits/stdc++.h>
 using namespace std;
 
-int printSCS(string s1, string s2, int m, int n) {
+int printLongestRepeatingSubsequence(string s1, string s2, int m, int n) {
 
     vector< vector<int> > dp(m + 1, vector<int>(n+1, 0));
 
@@ -25,7 +24,7 @@ int printSCS(string s1, string s2, int m, int n) {
 int main()
 {
     string s1 = "aabebcdd";
-    cout << printSCS(s1, s1, s1.length(), s1.length()) << endl;
+    cout << printLongestRepeatingSubsequence(s1, s1, s1.length(), s1.length()) << endl;
     
     return 0;
 }
