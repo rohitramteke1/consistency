@@ -37,7 +37,6 @@ int LCS(string s1, string s2, int m, int n) {
     }
 
     return dp[m][n];
-
 }
 
 int SCS(string s1, string s2, int m, int n) {
