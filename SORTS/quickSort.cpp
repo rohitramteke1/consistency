@@ -4,6 +4,45 @@
 // best O(N*logN)
 // average O(N*logN)
 
+#include <bits/stdc++.h>
+using namespace std;
+
+void print(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << ' ';
+    cout << endl;
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = low;
+    while(low < high) {
+        while(arr[pivot] >= arr[low]) low++;
+        while(arr[pivot] < arr[high]) high--;
+        if(low < high) swap(arr[low], arr[high]);
+    }
+    swap(arr[pivot], arr[high]);
+    return high;
+}
+
+void quickSort(int arr[], int low, int high) {
+    if(low > high) return;
+    int p_index = partition(arr, low, high);
+    quickSort(arr, low, p_index - 1);
+    quickSort(arr, p_index + 1, high);
+}
+
+int main()
+{
+    int arr[] = {5,4,0,1,3,2};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    quickSort(arr, 0, n-1);
+    print(arr, n);
+    
+    return 0;
+}
+
+/*
 #include <iostream>
 using namespace std;
 
@@ -52,3 +91,4 @@ int main()
     
     return 0;
 }
+*/

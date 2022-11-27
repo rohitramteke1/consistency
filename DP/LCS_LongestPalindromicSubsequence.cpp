@@ -35,7 +35,7 @@ int main()
     // NOTE: On applying LCS on -> reverse of string with itself
     // gives you longest palindromic subs-equence
     
-    string s1 = "madam";
+    string s1 = "letelt";
     cout << LCS(s1, reverse(s1), s1.length(), s1.length()) << endl;
     
     return 0;
