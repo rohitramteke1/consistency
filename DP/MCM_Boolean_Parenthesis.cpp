@@ -1,22 +1,16 @@
-// this is very famous problem
+// this is very famous problem (HARD)
 // Evaluate an expression to True
 // we've given a string 
 
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 1e3+5;
-int prime[N];
+int solve(string s, int i, int j) {
 
-void sieveOfEratosthenes(int n) {
-    
 }
 
 int main()
 {
-    int n;
-    cin >> n;
-    sieveOfEratosthenes(n);
-    
+    string s = "";
     return 0;
 }

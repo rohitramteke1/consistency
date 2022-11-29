@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 // Node
@@ -38,6 +38,13 @@ public:
     void insertAtFront(int data);
     void insertInBetween(int data, int index);
     void insertAtLast(int data);
+    void removeDuplicates();
+    void removeDuplicates2();
+    void removeDuplicatesFromUnsorted();
+    void removeNodeFromLL();
+    int getMiddleElement();
+    Node* detectCycle();
+
 
     // display Linked-List
     void display(Node* head);
@@ -148,25 +155,156 @@ void LinkedList::display(Node* head) {
     cout << "Linked-List is empty...\n";
 }
 
+Node* LinkedList::detectCycle() {
+    Node* prev = NULL;
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast != NULL && fast->next != NULL) {
+        prev = slow;
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast) {
+            cout << "cycle\n";
+            break;
+        }
+    }
+    return head;
+}
+
+void LinkedList::removeDuplicates() {
+    Node* prev = head;
+    Node* curr = head->next;
+    while(curr != NULL) {
+        if(prev->data == curr->data) {
+            prev->next = curr->next;
+            delete curr;
+            curr = prev->next;
+        } else {
+            prev = prev->next;
+            curr = curr->next;
+        }
+    }
+}
+
+void LinkedList::removeDuplicates2() {
+    // you've given a sorted list
+    // you've to remove all the duplicates element from the
+    // including that element also
+    Node* dummy = new Node(INT_MIN);
+    Node* prev = dummy;
+
+    dummy->next = head;
+
+    while(head != NULL) {
+
+        if(head->next != NULL && head->data == head->next->data) {
+            // skip the nodes whose value are equal to head
+            while(head->next != NULL && head->data == head->next->data) {
+                head = head->next;
+            }
+            prev->next = head->next;
+        }
+        else {
+            prev = prev->next;
+        }
+        head = head->next;
+    }
+    head = dummy->next;
+}
+
+void LinkedList::removeDuplicatesFromUnsorted() {
+    // you've given unsorted list and you've to remove the duplicate
+    // elements from the list
+    // way-1
+    // traverse the one loop for a node and other loop to 
+    // check the all the values of the other nodes to the first loop node
+    // O(N^2) O(1)
+    // way-2: merge technique -> O(N * logN)
+    // way-3: hashing O(N)
+
+    unordered_set<int> hash_set;
+    Node* prev = NULL;
+    Node* curr = head;
+    while (curr != NULL)
+    {
+        if(hash_set.find(curr->data) != hash_set.end()) {
+            prev->next = curr->next;
+            delete curr;
+            curr = prev->next;
+            continue;
+        }
+        hash_set.insert(curr->data);
+        prev = curr;
+        curr = curr->next;
+    }
+}
+
+int LinkedList::getMiddleElement() {
+    // hare and tortoise problem | floyd cycle detection
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast != NULL && fast->next != NULL) 
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow->data;
+}
+
+int LinkedList::removeNodeFromLL() {
+    // hare and tortoise problem | floyd cycle detection
+    Node* dummy = new Node(INT_MIN);
+    Node* prev = dummy;
+    Node* curr = head;
+    list<Node *> l;
+    l.push_back(dummy);
+
+    while(curr != NULL) {
+        l.push_back(prev);
+        while(l.size() > 1 && l.back()->data < curr->data) {
+            l.pop();
+            prev = l.back();
+            prev->next = curr;
+            prev = prev->next;
+            curr = curr->next;
+        }
+
+        curr = curr->next;
+    }
+
+}
+
 int main()
 {
     LinkedList ll;
-    ll.insertNode(1);
-    ll.insertNode(2);
-    ll.insertNode(3);
-    ll.insertNode(4);
+    ll.insertNode(6);
+    ll.insertNode(6);
+    ll.insertNode(49);
+    ll.insertNode(49);
+    ll.insertNode(30);
+    ll.insertNode(30);
+    ll.insertNode(40);
+    ll.insertNode(40);
     ll.insertNode(5);
 
-    ll.insertAtFront(0);
-    ll.insertAtFront(-1);
-    ll.insertAtFront(-2);
-    ll.insertAtLast(6);
-    ll.insertInBetween(100, 5);
-    ll.insertInBetween(101, 6);
-    ll.insertInBetween(102, 7);
-    ll.insertInBetween(100, 12);
-
     ll.display(head);
+    // ll.removeDuplicates();
+    ll.removeDuplicatesFromUnsorted();
+    ll.display(head);
+    // cout << ll.getMiddleElement() << endl;
+    // ll.removeDuplicates2();
+    
+    // ll.insertAtFront(0);
+    // ll.insertAtFront(-1);
+    // ll.insertAtFront(-2);
+    // ll.insertAtLast(6);
+    // ll.insertInBetween(100, 5);
+    // ll.insertInBetween(101, 6);
+    // ll.insertInBetween(102, 7);
+    // ll.insertInBetween(100, 12);
+
     
     return 0;
 }
