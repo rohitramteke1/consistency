@@ -17,37 +17,23 @@ void bfs_nge(vector<int> &nums)
                 break;
             }
         }
-        if (!flag)
-        {
-            cout << -1 << ' ';
-        }
+        if (!flag) cout << -1 << ' ';
     }
 }
 
 void ngeI(vector<int> &nums)
 {
     stack<int> s;
-    vector<int> v;
+    vector<int> v(nums.size());
     int n = nums.size();
-    for (int i = 2*n - 1; i >= 0; i--)
+    for (int i = n - 1; i >= 0; i--)
     {   
-        if (s.empty())
-        {
-            cout << -1 << endl;
-            v.emplace_back(nums[i]);
-        }
-        else if(!s.empty() && s.top() <= nums[i]) {
-            while (!s.empty() && s.top() <= nums[i])
-            {
-                s.pop();
-            }
-        }
-        else if(!s.empty() && s.top() > nums[i]) {
-            cout << s.top() << ' ';
-            v.emplace_back(nums[i]);
-        }
+        while (!s.empty() && s.top() <= nums[i]) s.pop();
+        if (s.empty()) v[i] = -1;
+        else if(!s.empty() && s.top() > nums[i]) v[i] = s.top();
         s.push(nums[i]);
     }
+    for (auto &&i : v) cout << i << ' ';
 }
 
 void ngeII(vector<int> &nums)
@@ -57,11 +43,7 @@ void ngeII(vector<int> &nums)
     vector<int> v(n);
     for (int i = 2*n - 1; i >= 0; i--)
     {   
-
-        while (!s.empty() && s.top() <= nums[i%n])
-        {
-            s.pop();
-        }
+        while (!s.empty() && s.top() <= nums[i%n]) s.pop();
         if(i < n) {
             if(!s.empty()){
                 v[i] = s.top();
@@ -71,17 +53,17 @@ void ngeII(vector<int> &nums)
         }
         s.push(nums[i%n]);
     }
-
-    // for (auto &&i : v)
-    // {
-    //     cout << i << ' ';
-    // }
+    for (auto &&i : v) cout << i << ' ';
 }
 
 int main()
 {
     vector<int> nums = {3, 10, 4, 2, 1, 2, 6, 7, 2, 9};
-    ngeII(nums);
+
+    ngeI(nums);
+    cout << endl;
+    // ngeII(nums);
+    // cout << endl;
     // bfs_nge(nums);
 
     return 0;
