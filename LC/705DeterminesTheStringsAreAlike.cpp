@@ -21,6 +21,21 @@ bool is_halves_are_alike(string s) {
     
     return leftVowel == rightVowel;
 }
+/*
+    static bool halvesAreAlike(string_view s) noexcept {
+        return vowelCount(s.substr(0, size(s) / 2)) == vowelCount(s.substr(size(s) / 2));
+    }
+	
+    static int vowelCount(string_view s) noexcept {
+        return count_if(begin(s), end(s), isVowel);
+    }
+
+    static bool isVowel(char ch) noexcept {
+        return
+            ch == 'a' || ch == 'e' || ch == 'i'  || ch == 'o' || ch == 'u' ||
+            ch == 'A' || ch == 'E' || ch == 'I'  || ch == 'O' || ch == 'U' ;
+    }
+*/
 
 int main()
 {

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 using namespace std;
 
 class Node {
@@ -26,6 +27,8 @@ public:
     void insertNode(int data);
     void display(Node* head);
     Node* removeDuplicates();
+    Node* reverseLL(Node* last);
+    bool isPalindrome();
 };
 
 void LinkedList::insertNode(int data) {
@@ -72,21 +75,76 @@ Node* LinkedList::removeDuplicates() {
     return head;
 }
 
+Node* LinkedList::reverseLL(Node* last) {
+    Node *prev = head;
+    Node *curr = head;
+    Node *next = curr->next;
+    while(curr->next != last && curr->next != NULL) {
+        curr->next = next->next;
+        next->next = prev;
+        prev = next;
+        next = curr->next;
+    }
+    return prev;
+    // stack<Node* > s;
+    // Node* node = head;
+    // while(node != NULL) {
+    //     s.push(node);
+    //     node = node->next;
+    // }
+    // Node* dummy = new Node(0);
+    // node = dummy;
+
+    // while(!s.empty()) {
+    //     cout << s.top()->data << ' ';
+    //     node->next = s.top();
+    //     s.pop();
+    //     node = node->next;
+    // }
+    // node->next = NULL;
+    // return dummy->next;
+}
+
+bool LinkedList::isPalindrome() {
+    Node* slow = head;
+    Node* fast = head;
+    while(fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    Node *start = reverseLL(slow);
+    Node *mid = (fast == NULL) ? slow: slow->next;
+
+    while(start != slow) {
+        if(start->data != mid->data) 
+            return false;
+        start = start->next;
+        mid = mid->next;
+    }
+
+    return true;
+}
+
 int main()
 {
     LinkedList ll;
     ll.insertNode(0);
-    ll.insertNode(0);
     ll.insertNode(1);
-    ll.insertNode(1);
-    ll.insertNode(2);
-    ll.insertNode(2);
     ll.insertNode(2);
     ll.insertNode(3);
+    ll.insertNode(2);
+    ll.insertNode(1);
+    ll.insertNode(0);
 
-    head = ll.removeDuplicates();
+    // head = ll.removeDuplicates();
 
-    ll.display(head);
+    // ll.display(head);
+    // Node* newHead = ll.reverseLL(NULL);
+    // head = newHead;
+    cout << endl;
+    // ll.display(newHead);
+    cout << ll.isPalindrome();
 
     return 0;
 }
