@@ -41,8 +41,9 @@ public:
     void removeDuplicates();
     void removeDuplicates2();
     void removeDuplicatesFromUnsorted();
-    void removeNodeFromLL();
     int getMiddleElement();
+    void oddEvenList();
+    void swapNodes(int k);
     Node* detectCycle();
 
 
@@ -253,46 +254,57 @@ int LinkedList::getMiddleElement() {
     return slow->data;
 }
 
-int LinkedList::removeNodeFromLL() {
-    // hare and tortoise problem | floyd cycle detection
-    Node* dummy = new Node(INT_MIN);
-    Node* prev = dummy;
-    Node* curr = head;
-    list<Node *> l;
-    l.push_back(dummy);
-
-    while(curr != NULL) {
-        l.push_back(prev);
-        while(l.size() > 1 && l.back()->data < curr->data) {
-            l.pop();
-            prev = l.back();
-            prev->next = curr;
-            prev = prev->next;
-            curr = curr->next;
-        }
-
-        curr = curr->next;
+void LinkedList::oddEvenList() {
+    // if (head == NULL || head->next == NULL) return head;
+    Node* odd = head;
+    Node* even = head->next;
+    Node* evenStart = even;
+    while(even != NULL && even->next != NULL)
+    {
+        odd->next = even->next;
+        odd = odd->next;
+        even->next = odd->next;
+        even = even->next;
     }
+    // if(even != NULL) even->next = NULL;
+    odd->next = evenStart;
+}
 
+void LinkedList::swapNodes(int k){
+    // using fast and slow + Sliding window
+    Node* start = NULL;
+    Node* slow = head;
+    Node* fast = head;
+
+    while(--k) fast = fast->next;
+    start = fast;
+
+    while(fast->next != NULL) slow = slow->next, fast = fast->next; 
+    swap(slow->data, start->data);
 }
 
 int main()
 {
     LinkedList ll;
+    ll.insertNode(7);
+    ll.insertNode(9);
     ll.insertNode(6);
     ll.insertNode(6);
-    ll.insertNode(49);
-    ll.insertNode(49);
-    ll.insertNode(30);
-    ll.insertNode(30);
-    ll.insertNode(40);
-    ll.insertNode(40);
+    ll.insertNode(7);
+    ll.insertNode(8);
+    ll.insertNode(3);
+    ll.insertNode(0);
+    ll.insertNode(9);
     ll.insertNode(5);
 
     ll.display(head);
-    // ll.removeDuplicates();
-    ll.removeDuplicatesFromUnsorted();
+    ll.swapNodes(5);
     ll.display(head);
+
+    // ll.removeDuplicates();
+    // ll.removeDuplicatesFromUnsorted();
+    // ll.oddEvenList();
+    // ll.display(head);
     // cout << ll.getMiddleElement() << endl;
     // ll.removeDuplicates2();
     

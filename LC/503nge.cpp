@@ -60,8 +60,8 @@ int main()
 {
     vector<int> nums = {3, 10, 4, 2, 1, 2, 6, 7, 2, 9};
 
-    ngeI(nums);
-    cout << endl;
+    // ngeI(nums);
+    // cout << endl;
     // ngeII(nums);
     // cout << endl;
     // bfs_nge(nums);
