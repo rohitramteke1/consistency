@@ -31,8 +31,8 @@ int LCS(string s1, string s2, int m, int n) {
 
 int main()
 {
-    string s1 = "heap";
-    string s2 = "pea";
+    string s1 = "leetcode";
+    string s2 = "etco";
     int lcs = LCS(s1, s2, s1.length(), s2.length());
     cout << "LCS: " << lcs << endl;
     cout << "Insertion: " << s1.length() - lcs << endl;
