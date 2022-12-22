@@ -11,3 +11,5 @@ N Queens
 
 reverse a stack using recursion TC -> O(N) + SC -> O(N)
 leetcode : 2506 count the pairs of similar strings (contest question) Not yet
+
+Binary Exponentiation
