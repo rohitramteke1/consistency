@@ -2,24 +2,23 @@
 using namespace std;
 int main()
 {
-    vector<int> nums = {-2,1,-3,3};
-    int k = 2;
-
-    int len = 0;
-
-    int sum = 0;
-    int cur = 0;
-    for (int i = 0; i < nums.size(); i++)
+    vector<int> nums = {10, 5, 2, 7, 1, 9};
+    int k = 15;
+    int i = 0, j = 0;
+    int curr = 0;
+    while( i < nums.size() )
     {
-        cur += nums[i];
-        if(cur > sum) {
-            sum = cur;
+        curr += nums[i];
+        if(i < k) {
+            i++;
+            continue;
         }
-        if(cur < 0) {
-            cur = 0;
+        else {
+            curr = curr - nums[j];
+            i++; j++;
         }
     }
-    cout << sum << endl;
+    cout << curr << endl;
     
     return 0;
 }

@@ -10,5 +10,7 @@
 *.exe
 *.out
 /site
+/LUV
 *.out
+links.txt
 RLE.*
