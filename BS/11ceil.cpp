@@ -40,8 +40,6 @@ int findCeil(vector<int> arr, int n, int x) {
 int main()
 {
     vector<int> arr = {1,2,8,10,11,12,19};
-    // cout << findCeil(arr, arr.size(), 5) << endl;
-    auto i = find(arr.begin(), arr.end(), 0) - arr.begin();
-    cout << i << endl;
+    cout << findCeil(arr, arr.size(), 5) << endl;
     return 0;
 }
