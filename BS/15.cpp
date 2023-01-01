@@ -12,16 +12,15 @@ int minDiffElement(vector<int> nums, int target) {
         else if(nums[mid] > target) high = mid - 1;
         mid = low + (high - low)/2;
     }
-    int left = mid-1;
-    int right = mid;
-    return min(abs(target - nums[right]), abs(target - nums[left]));
+    if(abs(nums[low] - target) < nums[high] - target)
+        return nums[low];
+    return nums[high];
 }
 
 int main()
 {
     vector<int> nums = {2, 5, 6, 10, 12, 15};
-    int target = 20;
-
+    int target = 11;
     cout << minDiffElement(nums, target) << endl;
     
     return 0;

@@ -1,4 +1,5 @@
 // New Year 1st Problem and Unable to solve
+// finally solved on 11.35Pm of 1st january 2023
 #include <bits/stdc++.h>
 // #include <sstream>
 // #include <string>
@@ -6,31 +7,38 @@
 // #include <unordered_map>
 using namespace std;
 
-int solve(string pattern, string s) {
-    unordered_map<char, string> umap;
-    unordered_map<string, bool> flag;
 
+vector<string> split(string s) {
     stringstream ss(s);
-    s = "";
-    int i = 0;
-    while(ss >> s && i < pattern.length()) {
+    vector<string> v;
+    while(ss >> s) {
+        v.push_back(s);
+    }
+    return v;
+}
 
-        if(flag.find(s) == flag.end()) {
-            flag[s] = true;
-            if(umap.find(pattern[i]) == umap.end()) {
-                umap[pattern[i]] = s;
-            }
+int solve(string pattern, string s) {
+    // TC: O(N)
+    // SC: O(N)
+    unordered_map<char, string> umap;
+    unordered_set<string> uset;
+    vector<string> v = split(s);
+    // a b b a
+    // cat dog dog cat
+    for (int i = 0; i < pattern.size(); i++)
+    {
+        if(umap.find(pattern[i]) == umap.end() && uset.find(v[i]) == uset.end())
+        {
+            umap[pattern[i]] = v[i];
+            uset.insert(v[i]);
         }
         else {
-            if(umap.find(pattern[i]) == umap.end()) {
+            if(umap[pattern[i]] != v[i]) {
                 return false;
             }
-            else {
-                if(umap[pattern[i]] != s) return false;
-            }
         }
-        i++;
     }
+    
     return true;
 }
 
