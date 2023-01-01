@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// floor: greatest element smaller than or equal to x
+// floor: largest element which is smaller than or equal to x
 int findFloor(vector<int> arr, int n, int x) {
     int ans = -1;
     int low = 0;
