@@ -25,6 +25,8 @@ public:
     }
 
     bool isLeaf(Node* root){
+        if(root == NULL)
+            return false;
         return !root->left && !root->right;
     }
 
