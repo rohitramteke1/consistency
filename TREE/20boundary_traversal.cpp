@@ -99,7 +99,7 @@ int main()
     root->right->left = t.insert(6);
     root->right->right = t.insert(7);
 
-    t.boundaryTraversal(root);
+    t.bt(root);
 
     //       1
     //     2   3

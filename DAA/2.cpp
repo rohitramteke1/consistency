@@ -8,7 +8,7 @@ public:
         this->nums = nums;
         _max = _min = 0;
     }
-
+    
     // O(3n/2-2) + O(logH)
     void max_min(int low, int high) {
         int mid;
