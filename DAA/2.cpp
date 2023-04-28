@@ -38,7 +38,7 @@ public:
 
     void print(int low, int high) {
         max_min(low, high);
-        cout << _max << ' ' << _min << endl;
+        cout << "\nMax of array: " << _max << '\n' << "Min of array: "<< _min << endl;
     }
 
 };
@@ -46,6 +46,10 @@ public:
 int main()
 {
     vector<int> nums = {0,1,2,3,4,5,6,7,8,9,10};
+    cout << "Array elements are: ";
+    for (auto &&i : nums)
+        cout << i << ' ';
+    
     Practical p(nums);
     p.print(0, nums.size());
 

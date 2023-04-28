@@ -41,21 +41,24 @@ double knapsack(Item arr[], int n, int wt) {
 }
 
 int main()
-{
-    int profit[] = {10, 5, 15, 7, 6, 18, 3};
-    int weight[] = {2, 3, 5, 7, 1, 4, 1};
-    
-
-    struct Item arr[7];
-
-    for (int i = 0; i < 7; i++)
+{   
+    int n, wt;
+    cout << "Enter the no of objects: "; cin >> n;
+    cout << "Enter the weight and profit of each object: ";
+    struct Item arr[n];
+    for (int i = 0; i < n; i++)
     {
-        arr[i].profit = profit[i];
-        arr[i].weight = weight[i];
+        int a, b;
+        cin >> a >> b;
+        arr[i].weight = a;
+        arr[i].profit = b;
     }
     
+    cout << "Now Enter the capacity of knapsack: "; cin >> wt;
+    
+    cout << "Fractional Knapsack maximum profit: ";
 
-    cout << knapsack(arr, 7, 15) << endl;
+    cout << knapsack(arr, n, wt) << endl;
 
     return 0;
 }

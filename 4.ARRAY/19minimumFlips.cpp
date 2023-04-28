@@ -23,6 +23,29 @@ int solve(vector<int> &arr, int value) {
 
 // gfg code
 
+int solve(vector<int> &arr) {
+    int count = 0;
+    int n = arr.size();
+
+    for (int i = 1; i < n; i++)
+    {
+        // we'll flip the seconds 
+        // 1 1 0 0 0 1 1 1 0 0 1
+        // 1   0     1     0   1
+        // 1 0 1 0 1
+        // minimum flips required 2
+
+        if(arr[i] != arr[i-1]) {
+            if(arr[i] != arr[0])
+                cout << "from " << i << " to ";
+            else
+                cout << i-1 << endl;
+        }
+    }
+    
+    return count;
+}
+
 
 int main()
 {
@@ -30,7 +53,8 @@ int main()
 
     // our basic idea is count all the subarrys of 0s and 1s
     // pick up the min of both
-    cout << solve(arr, 0) << endl;
-    cout << solve(arr, 1) << endl;
+    solve(arr);
+    // cout << solve(arr, 0) << endl;
+    // cout << solve(arr, 1) << endl;
     return 0;
 }

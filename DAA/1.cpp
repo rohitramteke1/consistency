@@ -59,9 +59,9 @@ int main()
 {
     vector<int> nums = {0,1,2,3,4,5,6,7,8,9,10};
     Practical p(nums);
-    cout << "Binary-Search: " << p.binarySearch(10) << endl;
-    cout << "Binary-Search-Recursive: " << p.binarySearchRecur(10, 0, nums.size()-1) << endl;
-    cout << "Linear-Search: " << p.linearSearch(11) << endl;
-    cout << "Linear-Search-Recursive: " << p.linearSearchRecur(11, 0) << endl;
+    // cout << "Binary-Search: element found at index: " << p.binarySearch(10) << endl;
+    // cout << "Binary-Search-Recursive: element found at index: " << p.binarySearchRecur(10, 0, nums.size()-1) << endl;
+    cout << "Linear-Search: element found at index: " << p.linearSearch(5) << endl;
+    cout << "Linear-Search-Recursive: element found at index " << p.linearSearchRecur(6, 0) << endl;
     return 0;
 }

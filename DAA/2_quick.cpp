@@ -39,11 +39,12 @@ public:
 int main()
 {
     vector<int> nums = {7,8,9,10,0,1,2,3,4,5};
+    cout << "Array elements before QuickSort: ";
+    for (auto &&i : nums)
+        cout << i << ' ';
+    cout << "\nAfter QuickSort: ";
     Practical p(nums);
-
     p.quickSort(0, 9);
-
     p.print();
-
     return 0;
 }

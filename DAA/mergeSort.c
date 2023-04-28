@@ -49,10 +49,16 @@ void mergeSort(int arr[], int low, int high) {
 int main() {
 
     int arr[] = {9,3,0,7,1,4,2,11};
+    int n = sizeof(arr)/sizeof(arr[0]);
 
-    mergeSort(arr, 0, 5);
-
-    for (int i = 0; i < 6; i++)
+    printf("Array before merge sort: ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+    
+    mergeSort(arr, 0, n-1);
+    printf("Array after merge sort: ");
+    for (int i = 0; i < n; i++)
         printf("%d ", arr[i]);
 
     return 0;

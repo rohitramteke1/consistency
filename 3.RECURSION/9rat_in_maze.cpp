@@ -61,14 +61,14 @@ int main()
                                  {0, 1, 1, 1} };
 
     // not possible
-    if(m[0][0] == 0)
+    if(maze[0][0] == 0)
         return 0;
 
 
     int n = maze.size();
     string path = "";
 
-    vector< vector<int> > visited (n , vector<int> (n, 0));
+    vector< vector<int> > visited (n , vector<int> (n, 0) );
     solve(0, 0, n, path, maze, visited);
 
     return 0;
