@@ -21,7 +21,10 @@ int powerOfN(int x, int n) {
 
 int main()
 {
-    cout << powerOfN(2, 5) << endl;
+    // cout << powerOfN(2, 5) << endl;
+    string s = bitset < 64 > (10) ;
+    
+    cout << s << endl;
     
     return 0;
 }
