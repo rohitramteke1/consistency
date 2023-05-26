@@ -63,7 +63,6 @@ vector<int> findUnion(int a[], int b[], int m, int n)
     for (auto &&i : unionResult)
         cout << i << ' ';
     
-
     return unionResult;
 }
 
