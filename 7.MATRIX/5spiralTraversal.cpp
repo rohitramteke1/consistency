@@ -13,16 +13,36 @@ void print(int mat[4][4]) {
 
 void spiralTraversal(int mat[4][4])
 {
-    int row,col;
-    row = col = 4;
-    print(mat);
+    int row = 4;
+    int top, left, bottom, right;
+    top = left = 0, bottom = right = row - 1;
     
-    for (int i=0; i < row; i++) {
-        for (int j=i+1; j < row; j++) {
-            swap(mat[i][j], mat[j][i]);
+    while (top <= bottom && left <= right) {
+        // top row
+        for (int i=left; i<=right; i++)
+            cout << mat[top][i] << ' ';
+            top++;
+        
+        // right column
+        for (int i=top; i<= bottom; i++)
+            cout << mat[i][right] << ' ';
+            right--;
+        
+        // bottom row
+        if (top <= bottom) {
+            for (int i=right; i>=left; i--)
+                cout << mat[bottom][i] << ' ';
+                bottom--;
+        }
+        
+        // left column
+        if (left <= right) {
+            for (int i=bottom; i>=top; i--)
+                cout << mat[i][left] << ' ';
+                left++;
         }
     }
-    
+
     print(mat);
 }
 
