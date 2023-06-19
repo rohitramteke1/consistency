@@ -40,7 +40,8 @@ public:
         vector<int> hash(CHAR, -1);
 
         // -1 represent chat isn't present
-        //
+        // -2 represent chat is appear more than 1 times
+        
         for (int i = 0; i < n; i++)
         {
             if (hash[S[i]] == -1)
